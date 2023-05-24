@@ -1,0 +1,76 @@
+﻿@using LibrarySystem.Web.Models.Students
+@model CreateOrEditStudentViewModel
+@section scripts{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Students/CreateOrEditStudent.js" asp-append-version="true"></script>
+    </environment>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+          @L("CreateOrEditStudent")
+          
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <form name="studentCreateForm" id="studentCreateForm" role="form" class="form-horizontal">
+            <div class="modal-body">
+                <div class="tab-content mt-4">
+                    <div role="tabpanel" class="tab-pane container active">
+                    <input type="hidden" name="Id" value="@Model?.Id" data-stud-id />
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label">@L("Name")</label>
+                            <div class="col-md-9">
+                            <input type="text" class="form-control" name="StudentName" value="@Model?.StudentName" data-stud-name/>
+                            </div>
+                        </div>
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("StudentContactNumber")</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="StudentContactNumber" value="@Model?.StudentContactNumber" data-stud-contact-number />
+                        </div>
+                    </div>
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("StudentEmail")</label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control" name="StudentEmail" value="@Model?.StudentEmail" data-stud-email />
+                        </div>
+                    </div>
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("Department")</label>
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.DepartmentId, Model.Departments.Select(d => new SelectListItem {Text = d.Name, Value = d.Id.ToString()}), "Select Department", new { @class = "form-control"})
+                        </div>
+                    </div>
+                    <!-- Default dropright button -->
+                    <div class="btn-group dropright" name="DepartmentId">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="DepartmentId"  data-existing-dept-name>
+                            Select Department
+                        </button>
+                        <div class="dropdown-menu" name="DepartmentId">
+                            <!-- Dropdown menu links -->
+                            @foreach(var departments in Model.Departments){
+                            <a class="dropdown-item" name="DepartmentId" value="@departments.Id">@departments?.Name</a>
+                            }
+                        </div>
+                    </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="CreateOrEditStudentIsActive">@L("IsActive")</label>
+
+
+
+                            <div class="col-md-9">
+                                <input type="checkbox" name="IsActive" value="true" id="CreateOrEditStudentIsActive" checked />
+                            </div>
+                        </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-default cancel-button" name="cancel" id="cancel">Cancel</button>
+                        <button type="submit" class="btn btn-primary save-button" name="submit" id="submit">Submit </button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+</section>

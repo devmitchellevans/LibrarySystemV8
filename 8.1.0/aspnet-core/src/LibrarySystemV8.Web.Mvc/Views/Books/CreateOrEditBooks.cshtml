@@ -1,0 +1,56 @@
+﻿@using LibrarySystem.Web.Models.Books
+@model CreateOrEditBookViewModel
+@section scripts{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Books/CreateOrEditBook.js" asp-append-version="true"></script>
+    </environment>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+          @L("CreateOrEditBook")
+          
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <form name="bookCreateForm" id="bookCreateForm" role="form" class="form-horizontal">
+            <div class="modal-body">
+                <div class="tab-content mt-4">
+                    <div role="tabpanel" class="tab-pane container active">
+                    <input type="hidden" name="Id" value="@Model?.Id" data-book-id />
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label">@L("Title")</label>
+                            <div class="col-md-9">
+                            <input type="text" class="form-control" name="BookTitle" value="@Model?.BookTitle" data-book-name/>
+                            </div>
+                        </div>
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("Author")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="BookAuthor" value="@Model?.BookAuthor" data-book-author/>
+                        </div>
+                    </div>
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("Publisher")</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="BookPublisher" value="@Model?.BookPublisher" data-book-publisher/>
+                        </div>
+                    </div>
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("BookCategories")</label>
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.BookCategoryId, Model.BookCategories.Select(d => new SelectListItem {Text = d.Name, Value = d.Id.ToString()}), "Select Book Category", new { @class = "form-control"})
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-default cancel-button" name="cancel" id="cancel">Cancel</button>
+                        <button type="submit" class="btn btn-primary save-button" name="submit" id="submit">Submit </button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+</section>

@@ -1,0 +1,77 @@
+﻿@using LibrarySystemV8.Web.Models.BookCategories;
+@model BookCategoryListViewModel
+@section scripts{
+    <environment names="Development">
+        <script src="~/view-resources/Views/BookCategories/Index.js" asp-append-version="true"></script>
+    </environment>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>@L("BookCategories")</h1>
+            </div>
+            <div class="col-sm-6">
+                @*                <a href="javascript:;" data-toggle="modal" data-target="#UserCreateModal" class="btn bg-blue float-sm-right">
+                <i class="fa fa-plus-square"></i>
+                @L("Create")
+                </a>*@
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!--Use for bulk actions-->
+                            </div>
+                            <div class="col-md-6">
+                              
+                                    <a c class="btn bg-blue float-sm-right" asp-controller="BookCategories" asp-action="CreateOrEditBookCategories">
+                                    <i class="fa fa-plus-square"></i>
+                                    @*<i class="fas fa-user-edit"></i> *@
+                                    @L("CreateBookCategory")
+                                </a>
+                                @*@await Html.PartialAsync("~/Views/Users/Index.AdvancedSearch.cshtml")*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="BookCategoriesTable" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>@L("Name")</th>
+                                        <th>@L("DepartmentId")</th>
+                                        <th>@L("Actions")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var bookCategories in Model?.BookCategories)
+                                    {
+                                        <tr>
+                                            <td>@bookCategories?.Name</td>
+                                            <td>@bookCategories?.DepartmentFk?.Name</td>
+                                            
+
+                                            <td>
+                                                <button type="button" class="btn btn-primary edite-button edit-bookCat" data-bookCat-id="@bookCategories.Id">@L("Edit")</button>
+                                                <button type="button" class="btn btn-danger delete-button delete-bookCat" data-bookCat-id="@bookCategories.Id" data-bookCat-name="@bookCategories.Name">@L("Delete")</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,81 @@
+﻿@using LibrarySystemV8.Web.Models.Books;
+@model BookListViewModel
+@section scripts{
+    <environment names="Development">
+        <script src="~/view-resources/Views/Books/Index.js" asp-append-version="true"></script>
+    </environment>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>@L("Books")</h1>
+            </div>
+            <div class="col-sm-6">
+                @*                <a href="javascript:;" data-toggle="modal" data-target="#UserCreateModal" class="btn bg-blue float-sm-right">
+                <i class="fa fa-plus-square"></i>
+                @L("Create")
+                </a>*@
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!--Use for bulk actions-->
+                            </div>
+                            <div class="col-md-6">
+
+                                <a c class="btn bg-blue float-sm-right" asp-controller="Books" asp-action="CreateOrEditBooks">
+                                    <i class="fa fa-plus-square"></i>
+                                    @*<i class="fas fa-user-edit"></i> *@
+                                    @L("CreateBook")
+                                </a>
+                                @*@await Html.PartialAsync("~/Views/Users/Index.AdvancedSearch.cshtml")*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="BooksTable" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>@L("Title")</th>
+                                        <th>@L("Author")</th>
+                                        <th>@L("Publisher")</th>
+                                        <th>@L("Category")</th>
+                                        <th>@L("Actions")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var book in Model.Books)
+                                    {
+                                        <tr>
+                                            <td>@book?.BookTitle</td>
+                                            <td>@book?.BookAuthor</td>
+                                            <td>@book?.BookPublisher</td>
+                                            <td>@book?.BookCategoryFk?.Name</td>
+
+
+                                            <td>
+                                                <button type="button" class="btn btn-primary edite-button edit-book" data-book-id="@book.Id">@L("Edit")</button>
+                                                <button type="button" class="btn btn-danger delete-button delete-book" data-book-id="@book.Id" data-book-name="@book.BookTitle">@L("Delete")</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
