@@ -7,6 +7,7 @@ using LibrarySystemV8.AppService;
 using LibrarySystemV8.Web.Models.Books;
 using LibrarySystemV8.AppService.Dto;
 using LibrarySystem.Web.Models.Books;
+using LibrarySystem.AppService;
 
 namespace LibrarySystem.Web.Controllers
 {
@@ -14,12 +15,14 @@ namespace LibrarySystem.Web.Controllers
     {
         private readonly IBookAppService _bookAppService;
         private readonly IBookCategoryAppService _bookCategoryAppService;
+        private readonly IAuthorAppService _authorAppService;
 
-        public BooksController(IBookAppService bookAppService, IBookCategoryAppService bookCategoryAppService)
+
+        public BooksController(IBookAppService bookAppService, IBookCategoryAppService bookCategoryAppService, IAuthorAppService authorAppService)
         {
             _bookAppService = bookAppService;
             _bookCategoryAppService = bookCategoryAppService;
-
+            _authorAppService = authorAppService;
         }
         public async Task<IActionResult> Index()
         {
@@ -37,6 +40,7 @@ namespace LibrarySystem.Web.Controllers
         {
             var model = new CreateOrEditBookViewModel();
             var bookCategories = await _bookCategoryAppService.GetAllBookCategoryAsync();
+            var authors = await _authorAppService.GetAllAuthorAsync();
 
 
             if (id > 0)
@@ -47,7 +51,7 @@ namespace LibrarySystem.Web.Controllers
 
                     Id = selectedBook.Id,
                     BookTitle = selectedBook.BookTitle,
-                    BookAuthor = selectedBook.BookAuthor,
+                    AuthorId = selectedBook.AuthorId,
                     BookPublisher = selectedBook.BookPublisher,
                     BookCategoryId = selectedBook.BookCategoryId,
                     IsBorrowed = selectedBook.IsBorrowed,
@@ -55,6 +59,7 @@ namespace LibrarySystem.Web.Controllers
                  };
 
             }
+            model.Authors = authors.ToList();
             model.BookCategories = bookCategories.ToList();
             return View(model);
 

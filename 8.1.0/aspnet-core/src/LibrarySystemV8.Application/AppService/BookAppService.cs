@@ -46,6 +46,7 @@ namespace LibrarySystemV8.AppService
         {
             var query = await _bookRepository.GetAll()
                 .Include(x => x.BookCategoryFk)
+                .Include(x => x.AuthorFk)
                 .Select(x => ObjectMapper.Map<BookDto>(x))
                 .ToListAsync();
 

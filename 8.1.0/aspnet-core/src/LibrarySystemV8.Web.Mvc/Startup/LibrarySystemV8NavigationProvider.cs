@@ -58,6 +58,15 @@ namespace LibrarySystemV8.Web.Startup
                     )
                 ).AddItem(
                     new MenuItemDefinition(
+                        PageNames.Authors,
+                        L("Authors"),
+                        url: "Authors",
+                        icon: "fas fa-pencil",
+                        requiresAuthentication: true
+
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
                         PageNames.Books,
                         L("Books"),
                         url: "Books",

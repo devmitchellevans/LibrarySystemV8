@@ -3,6 +3,45 @@
     var _borrowerAppService = abp.services.app.borrower;
     var _bookAppService = abp.services.app.book;
     var _indexPage = "/Borrowers";
+    var _currentDate = new Date();
+    var _returnDate = new Date();
+
+    window.onload = (event) => {
+        getCurrentDate();
+        getReturnDate();
+
+    }
+
+
+    function formatDate(yyyy, mm, dd ) {
+        let format = new Date();
+
+        format.setDate(`${yyyy}/${mm}/${dd}`);
+
+        return format;
+    }
+
+    function getCurrentDate() {
+
+        let dd = _currentDate.getDate();
+
+        let mm = _currentDate.getMonth();
+
+        let yyyy = _currentDate.getFullYear();
+
+        document.getElementById('current-date').value = formatDate(yyyy,mm, dd );
+    }
+
+    function getReturnDate() {
+        let dd = _returnDate.getDate()+7;
+
+        let mm = _returnDate.getMonth();
+
+        let yyyy = _returnDate.getFullYear();
+
+        document.getElementById('return-date').value = formatDate(yyyy, mm, dd );
+        
+    }
 
     function save() {
         if (!_$form.valid()) {
@@ -38,5 +77,7 @@
 
         save();
     });
+
+
 }
 )(jQuery);
