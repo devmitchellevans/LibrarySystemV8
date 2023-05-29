@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace LibrarySystem.AppService.Dto
 {
     [AutoMapFrom(typeof(Author))]
+    [AutoMapTo(typeof(Author))]
 
     public class AuthorDto: EntityDto<int>
     {

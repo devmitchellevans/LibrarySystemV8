@@ -61,7 +61,7 @@ namespace LibrarySystemV8.Web.Startup
                         PageNames.Authors,
                         L("Authors"),
                         url: "Authors",
-                        icon: "fas fa-pencil",
+                        icon: "fas fa-users",
                         requiresAuthentication: true
 
                     )

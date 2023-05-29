@@ -30,7 +30,7 @@ namespace LibrarySystemV8.Web.Controllers
             var borrowers = await _borrowerAppService.GetAllBorrowersWithBookCategory(new PagedBorrowerResultRequestDto { MaxResultCount = int.MaxValue});
             var model = new BorrowerListViewModel()
             {
-                Borrowers = borrowers.Items.Where(x => x.BookFk.IsBorrowed == true).ToList()
+                Borrowers = borrowers.Items.ToList()
             };
             return View(model);  
         }

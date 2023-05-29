@@ -151,6 +151,9 @@
 	  <text name="ReturnDate">Return Date</text>
 	  <text name="Book">Book</text>
 	  <text name="Student">Student</text>
+	  <text name="Authors">Authors</text>
+	  <text name="AuthorDetails">Author Details</text>
+	  <text name="CreateNewAuthor">Create New Author</text>
 
 
 

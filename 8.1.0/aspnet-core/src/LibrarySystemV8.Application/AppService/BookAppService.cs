@@ -59,5 +59,22 @@ namespace LibrarySystemV8.AppService
                 .ToListAsync();
             return books;
         }
+        public async Task<BookDto> GetUpdateBook(EntityDto<int> input)
+        {
+            var book = await GetAsync(input);
+            
+            if(book.IsBorrowed == true)
+            {
+                book.IsBorrowed = false;
+            }
+            else
+            {
+                book.IsBorrowed = true;
+            }
+
+            var updateBook = await UpdateAsync(book);
+
+            return updateBook;
+        }
     }
 }
