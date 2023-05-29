@@ -51,18 +51,18 @@
                                 <tbody>
                                     @foreach (var borrower in Model.Borrowers)
                                     {
-                                        <tr>
+                                        <tr id="table-row">
                                             <td>@borrower?.BorrowDate</td>
-                                            <td>@borrower?.ExpectedReturnDate</td>
+                                            <td data-borrower-expected-return-date>@borrower?.ExpectedReturnDate</td>
                                             <td>@borrower?.ReturnDate</td>
                                             <td>@borrower?.BookFk?.BookTitle</td>
-                                            <td>@borrower?.BookFk?.IsBorrowed</td>
+                                            <td data-borrower-is-borrowed>@borrower?.BookFk?.IsBorrowed</td>
                                             <td>@borrower?.StudentFk?.StudentName</td>
 
 
                                             <td>
-                                                <button type="button" class="btn btn-primary edite-button edit-borrower" data-borrow-id="@borrower.Id">@L("Edit")</button>
-                                                <button type="button" class="btn btn-danger delete-button delete-borrower" data-borrow-id="@borrower.Id" data-borrow-name="@borrower?.StudentFk?.StudentName">@L("Delete")</button>
+                                                <button type="button" id="edit-button" class="btn btn-primary edit-button edit-borrower" data-borrow-id="@borrower.Id">@L("Edit")</button>
+                                                <button type="button" id="delete-button" class="btn btn-danger delete-button delete-borrower" data-borrow-id="@borrower.Id" data-borrow-name="@borrower?.StudentFk?.StudentName" data-borrow-book-id="@borrower?.BookId">@L("Delete")</button>
                                             </td>
                                         </tr>
                                     }

@@ -46,6 +46,7 @@ namespace LibrarySystemV8.AppService
         {
             var query = await _bookRepository.GetAll()
                 .Include(x => x.BookCategoryFk)
+                .Include(x => x.AuthorFk)
                 .Select(x => ObjectMapper.Map<BookDto>(x))
                 .ToListAsync();
 
@@ -57,6 +58,23 @@ namespace LibrarySystemV8.AppService
                 .Select(x => ObjectMapper.Map<BookDto>(x))
                 .ToListAsync();
             return books;
+        }
+        public async Task<BookDto> GetUpdateBook(EntityDto<int> input)
+        {
+            var book = await GetAsync(input);
+            
+            if(book.IsBorrowed == true)
+            {
+                book.IsBorrowed = false;
+            }
+            else
+            {
+                book.IsBorrowed = true;
+            }
+
+            var updateBook = await UpdateAsync(book);
+
+            return updateBook;
         }
     }
 }

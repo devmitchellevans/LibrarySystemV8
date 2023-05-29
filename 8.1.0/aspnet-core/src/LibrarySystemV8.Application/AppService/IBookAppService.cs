@@ -13,6 +13,6 @@ namespace LibrarySystemV8.AppService
     {
         Task<PagedResultDto<BookDto>> GetAllBooksWithBookCategory(PagedBookResultRequestDto input);
         Task<List<BookDto>> GetAllBookAsync();
-
+        Task<BookDto> GetUpdateBook(EntityDto<int> input);
     }
 }

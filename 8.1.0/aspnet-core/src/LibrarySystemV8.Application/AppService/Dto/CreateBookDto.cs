@@ -15,8 +15,9 @@ namespace LibrarySystemV8.AppService.Dto
 
         public string BookTitle { get; set; }
         public string BookPublisher { get; set; }   
-        public string BookAuthor { get; set; }
         public bool? IsBorrowed { get; set; }
+        public int AuthorId { get; set; }
+        public Author AuthorFk { get; set; }
         public int BookCategoryId { get; set; }
         public BookCategory BookCategoryFk { get; set; }
     }

@@ -23,19 +23,19 @@
                     <div class="form-group row required">
                         <label class="col-md-3 col-form-label">@L("BorrowDate")</label>
                         <div class="col-md-9">
-                            <input type="datetime" class="form-control" name="BorrowDate" value="@Model?.BorrowDate" data-borrow-date />
+                            <input type="datetime" id="hidden-borrow-date" class="form-control" name="BorrowDate" value="@Model?.BorrowDate" data-borrow-date />
                         </div>
                     </div>
                     <div class="form-group row required">
                         <label class="col-md-3 col-form-label">@L("ExpectedReturnDate")</label>
                         <div class="col-md-9">
-                            <input type="datetime" class="form-control" name="ExpectedReturnDate" value="@Model?.ExpectedReturnDate" data-expected-return-date />
+                            <input type="datetime" id="hidden-expected-return-date" class="form-control" name="ExpectedReturnDate" value="@Model?.ExpectedReturnDate" data-expected-return-date />
                         </div>
                     </div>
-                    <div class="form-group row required">
+                    <div class="form-group row">
                         <label class="col-md-3 col-form-label">@L("ReturnDate")</label>
                         <div class="col-md-9">
-                            <input type="datetime" class="form-control" name="StudentEmail" value="@Model?.ReturnDate" data-return-date/>
+                            <input type="datetime" class="form-control" name="ReturnDate" value="@Model?.ReturnDate" data-return-date/>
                         </div>
                     </div>
                     <div class="form-group row required">

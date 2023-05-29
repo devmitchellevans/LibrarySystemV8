@@ -1,9 +1,11 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using LibrarySystemV8.AppService.Dto;
 using LibrarySystemV8.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +14,11 @@ namespace LibrarySystemV8.AppService
     public class BorrowerAppService : AsyncCrudAppService<Borrower, BorrowerDto, int, PagedBorrowerResultRequestDto, CreateBorrowerDto, BorrowerDto>, IBorrowerAppService
     {
         public readonly IRepository<Borrower> _borrowerRepository;
-        public BorrowerAppService(IRepository<Borrower, int> repository, IRepository<Borrower> borrowerRepository) : base(repository)
+        public readonly IBookAppService _bookAppService;
+        public BorrowerAppService(IRepository<Borrower, int> repository, IRepository<Borrower> borrowerRepository, IBookAppService bookAppService) : base(repository)
         {
             _borrowerRepository = borrowerRepository;
+            _bookAppService = bookAppService;
         }
 
         public override Task<BorrowerDto> CreateAsync(CreateBorrowerDto input)
@@ -51,6 +55,7 @@ namespace LibrarySystemV8.AppService
 
                 return new PagedResultDto<BorrowerDto>(query.Count(), query);
         }
+
 
 
     }

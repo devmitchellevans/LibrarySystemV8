@@ -15,6 +15,7 @@ namespace LibrarySystemV8.EntityFrameworkCore
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<BookCategory> BookCategories { get; set; }
         public virtual DbSet<Borrower> Borrowers { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
         public LibrarySystemV8DbContext(DbContextOptions<LibrarySystemV8DbContext> options)
             : base(options)
         {
